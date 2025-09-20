@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DevConnect - A Community for Developers</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="{% static 'css/master.css' %}">
+  </head>
+
+  <body>
+    
+    <!-- ✅ Fullscreen Background -->
+    <div id="vanta-bg"></div>
+    
+    <!-- ✅ Foreground Layers -->
+    <div class="site-wrapper">
+
+      <nav class="navbar mynav default" role="navigation" id="navbar">
+  <div class="container">
+    <a class="navbar-brand" href="{% url 'home' %}">Dev<span>Connect</span></a>
+    <ul class="nav navbar-nav navbar-right">
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'posts:create' %}" class="btn btn-simple">Post</a></li>
+        <li><a href="{% url 'groups:all' %}" class="btn btn-simple">Groups</a></li>
+        <li><a href="{% url 'groups:create' %}" class="btn btn-simple">Create Group</a></li>
+        <li><a href="{% url 'accounts:logout' %}" class="btn btn-simple">Log out</a></li>
+      {% else %}
+        <li><a href="{% url 'groups:all' %}" class="btn btn-simple">Groups</a></li>
+        <li><a href="{% url 'accounts:login' %}" class="btn btn-simple">Log in</a></li>
+        <li><a href="{% url 'accounts:signup' %}" class="btn btn-simple">Sign up</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+      <!-- Page Content -->
+      <div class="mycontent">
+        {% block content %}{% endblock %}
+      </div>
+
+      
+
+    </div> <!-- end .site-wrapper -->
+
+    <!-- ✅ Vanta.js scripts OUTSIDE .site-wrapper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta/dist/vanta.net.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    VANTA.NET({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x3fddff,
+      backgroundColor: 0x0d1b2a,
+      points: 10.00,
+      maxDistance: 20.00,
+      spacing: 18.00
+    })
+  });
+</script>
+
+<script>
+  window.addEventListener("scroll", function() {
+    const navbar = document.getElementById("navbar"); // ✅ specifically your navbar
+    if (window.scrollY > 50) {
+      navbar.classList.add("scrolled");
+      navbar.classList.remove("default");
+    } else {
+      navbar.classList.add("default");
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
+
+<!-- Footer -->
+      <footer class="text-center py-4 mt-5 text-white">
+        <p>© 2025 <strong>DevConnect</strong> — Designed & Developed by <strong>Dipti Patil</strong></p>
+        <p>
+          <a href="https://github.com/diptipatil02" class="text-light mx-2">GitHub</a> |
+          <a href="https://www.linkedin.com/in/dipti-patil-3623b8379/" class="text-light mx-2">LinkedIn</a>
+        </p>
+      </footer>
+      
+  </body>
+</html>

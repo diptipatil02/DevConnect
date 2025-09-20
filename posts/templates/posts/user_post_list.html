@@ -1,0 +1,26 @@
+{% extends "posts/post_base.html" %}
+
+{% block prepost %}
+<div class="col-md-4">
+    <div class="user-info-box">
+        <!-- Optional Avatar Placeholder -->
+        <div class="user-avatar">
+            <span class="glyphicon glyphicon-user"></span>
+        </div>
+
+        <!-- Username -->
+        <h1 class="user-username">@{{ post_user.username }}</h1>
+
+        <!-- Subtitle -->
+        <p class="user-history">Post History</p>
+    </div>
+</div>
+{% endblock %}
+
+{% block post_content %}
+<div class="col-md-8">
+    {% for post in post_list %}
+        {% include "posts/_post.html" %}
+    {% endfor %}
+</div>
+{% endblock %}

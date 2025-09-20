@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-section">
+    <div class="hero-box">
+      <h1 class="hero-title">Welcome to DevConnect</h1>
+      <p class="hero-subtitle">
+        The developer community for coding, collaboration, and career growth.
+      </p>
+      <p class="hero-subtext">
+        Connect with developers worldwide, share knowledge, and build together.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="window.location.href='{% url 'accounts:signup' %}'">Join Now</button>
+        <button class="btn-secondary" onclick="window.location.href='{% url 'accounts:login' %}'">Login</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Features Section -->
+<section class="features text-center">
+  <div class="container">
+    <h2 style="margin-bottom:40px; font-weight:bold;">Why DevConnect?</h2>
+    <div class="row">
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-user" style="font-size:40px; color:#337ab7;"></span>
+        <h4>Create Communities</h4>
+        <p>Join or create groups for Python, JavaScript, and other dev topics.</p>
+      </div>
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-console" style="font-size:40px; color:#0dcaf0;"></span>
+        <h4>Share & Learn</h4>
+        <p>Ask questions, post updates, and share coding knowledge with others.</p>
+      </div>
+      <div class="col-sm-4">
+        <span class="glyphicon glyphicon-upload" style="font-size:40px; color:#5cb85c;"></span>
+        <h4>Grow Together</h4>
+        <p>Collaborate, network, and build your career with developers worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

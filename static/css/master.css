@@ -1,0 +1,762 @@
+/* ------------------------------
+   General Layout
+------------------------------- */
+html{
+  height: 100%;          /* important */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background: #0d1b2a; /* fallback if Vanta fails */
+  display: flex;
+  flex-direction: column;
+}
+
+.site-wrapper {
+  flex: 1;               /* expand to take all free vertical space */
+  display: flex;         /* optional, only if you want to center content */
+  justify-content: center; /* vertically center login box */
+  align-items: center;     /* horizontally center */
+  padding: 20px; 
+}
+
+/* Layering structure */
+#vanta-bg {
+  position: fixed;   /* pinned background */
+  top: 0;
+  left: 0;
+  
+  width: 100%;
+  height: 100%;
+  z-index: 0;        /* sits at bottom */
+}
+
+
+/* ------------------------------
+   Navbar
+------------------------------- */
+.navbar.mynav {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999 !important;
+  border: none !important;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.mynav.default {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.navbar.mynav.scrolled {
+  background-color: rgba(10, 15, 28, 0.95) !important;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.5) !important;
+}
+
+.navbar .navbar-brand {
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff !important;
+}
+
+.navbar .navbar-brand span {
+  color: #0dcaf0; /* highlight "Connect" */
+}
+
+.navbar .nav > li > a {
+   font-size: 15px;
+  color: #c9c9c9 !important;          /* default = soft gray */
+  font-weight: 500;
+  transition: color 0.3s ease, 
+  border-color 0.3s ease;
+  padding: 8px 15px; /* more breathing room */
+  letter-spacing: 0.3px; /* subtle spacing improves readability */
+}
+
+.navbar .nav > li > a:hover {
+  color: #0dcaf0 !important;          /* hover = cyan accent */
+}
+
+.navbar .nav > li.active > a {
+  color: #0dcaf0 !important;         /* active link stays accent color */
+  font-weight: 600;
+}
+
+body {
+  padding-top: 30px;  /* adjust based on actual navbar height */
+}
+
+.site-wrapper {
+  padding-top: 20px; /* pushes hero and content down */
+}
+
+/* ------------------------------
+   Hero Section (Homepage)
+------------------------------- */
+.hero {
+  min-height: 100vh;   /* full screen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 0 20px;
+}
+
+.hero-content {
+  background: rgba(0, 0, 0, 0.5);  /* dark glass effect */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 25px rgba(0,0,0,0.4);
+}
+
+.hero h1 {
+  font-size: 70px;
+  font-weight: bold;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.7);
+}
+
+.hero p.lead {
+  font-size: 20px;
+  font-weight: 300;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.hero-buttons button {
+  font-size: 18px;
+  padding: 16px 40px;
+  border-radius: 30px;   /* ✅ Rounded */
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+
+.btn-primary {
+  background: linear-gradient(90deg, #0d6efd, #3fddff);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 118, 255, 0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 118, 255, 0.6);
+}
+
+.btn-secondary {
+  background: #fff;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+}
+.btn-secondary:hover {
+  background: #f1f1f1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255,255,255,0.4);
+}
+
+
+
+/* ------------------------------
+   Hero Box (Updated)
+------------------------------- */
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px); /* full screen minus navbar height */
+  padding: 50px 20px 100px; /* top | sides | bottom (adjust for balance) */
+}
+
+.hero-box {
+  background: rgba(0,0,0,0.7); 
+  padding: 100px 80px;  /* ⬆️ Increased vertical padding */
+  border-radius: 12px;
+  text-align: center;
+  max-width: 1500px;     /* slightly wider */
+  margin: auto;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5),
+              0 0 20px rgba(0, 150, 255, 0.2);      
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: center; /* ✅ ensures center aligned */
+  margin: 0 auto;     /* auto margins help for centered block elements */
+}
+
+.hero-subtitle {
+  font-size: 1.8rem;
+  color: #ccc;
+  margin-bottom: 15px;  /* Adjusted for spacing balance */
+}
+
+/* ✅ New Subtext Style */
+.hero-subtext {
+  font-size: 1.3rem;
+  color: #aaa;
+  margin-bottom: 35px; /* Keeps space before buttons */
+}
+
+/* ------------------------------
+   Features Section
+------------------------------- */
+
+.features {
+  background: #ffffff;      /* pure white (instead of gray) */
+  padding: 60px 0;
+  width: 100vw;             /* full viewport width */
+  margin-left: calc(-50vw + 50%); /* cancel parent container centering */
+  position: relative;       /* ensures it sits above Vanta */
+  z-index: 1;               /* cover background */
+}
+.features h2 {
+  color: #000000 !important;   /* exact black */
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+.features h4 {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.features p {
+  color: #555;
+}
+
+.features span.glyphicon {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.features span.glyphicon:hover {
+  transform: scale(1.2);
+  color: #0d6efd;
+}
+
+/* ------------------------------
+   Footer
+------------------------------- */
+footer {
+  margin-top: auto;          /* pushed to bottom of flex column */
+  width: 100%;
+  background: rgba(0,0,0,0.85);
+  color: #f8f9fa;
+  padding: 15px 0;
+  text-align: center;
+  z-index: 1000;
+}
+
+footer strong {
+  color: #ffffff;              /* brand name crisp white */
+}
+
+footer a {
+  color: #0dcaf0;              /* cyan/blue links that pop */
+  margin: 0 5px;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #20c997;              /* teal hover for professional feel */
+}
+
+/* ------------------------------
+   Login / Signup Forms
+------------------------------- */
+.mycontent form {
+  max-width: 500px;
+  margin: 80px auto;             /* Centers horizontally + adds spacing */
+  padding: 35px;
+  background: rgba(255, 255, 255, 0.12);  /* subtle transparent look */
+  backdrop-filter: blur(10px);   /* smooth glass blur effect */
+  border-radius: 12px;           /* slightly smoother corners */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25); /* softer shadow */
+  color: #fff;                   /* text inside is white */
+}
+
+.mycontent h2 {
+  text-align: center;
+  margin-top: 0px;    /* top space */
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #00d4ff;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Headings inside the form */
+.mycontent h1,
+.mycontent h2,
+.mycontent h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #00d4ff;       /* trendy highlight color */
+  letter-spacing: 0.5px;
+}
+
+/* Inputs inside form */
+.mycontent form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.mycontent form input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 6px #00d4ff;
+}
+
+/* Submit Button */
+.mycontent form button,
+.mycontent form input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #00d4ff, #0066ff);
+  color: #fff;
+  font-weight: 500;         /* 👈 medium weight is cleaner */
+  font-size: 16px;          /* smoother size */
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.5px;    /* slight spacing → looks modern */
+}
+
+.mycontent form button:hover,
+.mycontent form input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px #00d4ff;
+}
+
+/*join now*/
+.btn-primary {
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { box-shadow: 0 0 15px rgba(0,118,255,0.4); }
+  to { box-shadow: 0 0 25px rgba(0,118,255,0.8); }
+}
+
+/* ------------------------------
+   Responsive Tweaks
+------------------------------- */
+@media (max-width: 992px) {
+  .hero h1 { font-size: 36px; }
+  .hero p { font-size: 16px; margin-bottom: 20px; }
+  .hero .btn { font-size: 14px; padding: 10px 22px; }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: 40px 10px;
+    min-height: 70vh;
+  }
+  .hero h1 { font-size: 28px; }
+  .hero p { font-size: 14px; }
+  .hero .btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+  .features { padding: 40px 15px; }
+  .features span.glyphicon { font-size: 30px; }
+  .features h4 { font-size: 18px; }
+  .features p { font-size: 14px; }
+  footer { font-size: 14px; padding: 20px 10px; }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 90px; /* for mobile if navbar wraps to 2 lines */
+  }
+}
+
+
+
+/* --- Groups Page Styling --- */
+
+/* Header box (above groups list) */
+.group-header-box {
+   background: rgba(0, 0, 0, 0.55); /* same frosted look as forms/cards */
+  backdrop-filter: blur(8px);
+  padding: 20px 25px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.group-header-box h2 {
+  color: #00d4ff;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.group-header-box .group-subtitle {
+  color: #ddd;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* --- Groups Page Styling --- */
+
+/* 🔹 Grid container */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cards per row */
+  gap: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 10px;
+}
+
+/* 🔹 Individual card */
+.grid-card {
+  background: rgba(30, 30, 40, 0.8); /* Darker, semi-transparent background */
+  backdrop-filter: blur(5px);
+  color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none; 
+}
+
+.grid-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 212, 255, 0.3);
+  text-decoration: none;
+}
+
+.grid-card h3 {
+  color: #00d4ff;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.grid-card p {
+    flex-grow: 1; /* Pushes meta to the bottom */
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* 🔹 Meta info row */
+.meta {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+.meta span {
+    background: rgba(0,0,0,0.3);
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+
+/* Responsive (1 col on small screens) */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* Post Detail Container */
+.post-detail-box {
+  background: rgba(0, 0, 0, 0.55);   /* dark frosted navy like signup */
+  backdrop-filter: blur(10px);       /* frosted blur glass effect */
+  border-radius: 12px;
+  padding: 30px;
+  margin: 50px auto;
+  max-width: 900px;
+  color: #e5e5e5;                    
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+/* Title */
+.post-detail-box h1,
+.post-detail-box h2,
+.post-detail-box h3 {
+  color: #00d4ff;        /* cyan accent */
+  font-weight: 600;      /* stronger heading */
+  font-size: 1.8rem;     /* bigger heading size */
+  margin-bottom: 20px;
+  text-align: center;    /* center headline */
+}
+
+/* Meta info (author, date, group name) */
+.post-meta {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Force meta links (date, group, etc.) to look like plain gray */
+.post-meta a,
+.group-name a,
+.time a {
+  color: #aaa !important;
+  text-decoration: none !important;
+  cursor: default;             /* look like plain text */
+  pointer-events: none;        /* disable clicking */
+}
+.post-meta a:hover {
+  color: #aaa;
+  text-decoration: none;
+}
+
+/* Author username stays highlighted */
+.post-meta .username a {
+  color: #0dcaf0 !important;   /* cyan for clickable username */
+  pointer-events: auto;        /* keep clickable */
+  cursor: pointer;
+}
+.post-meta .username a:hover {
+  color: #20c997;
+  text-decoration: underline;
+}
+
+/* Paragraphs */
+.post-detail-box p {
+  font-size: 1.25rem;   /* slightly smaller for better reading */
+  font-weight: 300;     /* lighter (Poppins light) */
+  line-height: 1.7;     /* good breathing space */
+  color: #f0f0f0;       /* soft white text */
+  margin-bottom: 18px;
+}
+
+/* Inline links inside content */
+.post-detail-box .post-content a {
+  color: #0dcaf0;
+  text-decoration: none;
+  font-weight: 500;
+}
+.post-detail-box .post-content a:hover {
+  color: #20c997;
+  text-decoration: underline;
+}
+
+/* User Profile Sidebar */
+.user-info-box {
+  background: rgba(0, 0, 0, 0.55);   /* frosted glass look */
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 30px 20px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Optional avatar circle */
+.user-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px auto;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #00d4ff;
+  box-shadow: 0 2px 10px rgba(0, 212, 255, 0.3);
+}
+
+/* Username */
+.user-username {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00d4ff;    /* cyan brand color */
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+/* Post History subtitle */
+.user-history {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #ccc;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Inputs + Textarea default styling -----------------------------------------*/
+/* Text fields and textarea */
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form input[type="url"],
+form input[type="search"],
+form textarea,
+#groupForm textarea /* ✅ ADDED THIS MORE POWERFUL SELECTOR */ {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12) !important;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  resize: none;
+}
+
+/* ✅ Force all typed text inside bootstrap inputs & textareas to white */
+input.form-control,
+textarea.form-control {
+  color: #fff !important;
+}
+
+/* Optional: make placeholder text a softer gray */
+input.form-control::placeholder,
+textarea.form-control::placeholder {
+  color: #bbb !important;
+}
+
+
+/* On focus */
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="password"]:focus,
+form input[type="number"]:focus,
+form input[type="url"]:focus,
+form input[type="search"]:focus,
+form textarea:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 0 6px #00d4ff;
+}
+
+/* Buttons keep their custom style */
+form button,
+form input[type="submit"] {
+  background: linear-gradient(90deg, #00d4ff, #0066ff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+form button:hover,
+form input[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px #00d4ff;
+}
+
+/* Style dropdown (select) same as inputs */
+form select {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12) !important; /* frosted look */
+  color: #fff;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  appearance: none;           /* remove default arrow styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+/* Force dropdown <select> text to be white */
+select.form-control {
+  color: #fff !important;
+  background: rgba(255, 255, 255, 0.12) !important; /* match frosted style */
+  border: none;
+}
+
+/* Style the options inside the dropdown */
+select.form-control option {
+  background: #0d1b2a;  /* dark dropdown background */
+  color: #fff;          /* white text inside dropdown */
+}
+
+/* On focus */
+form select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.18) !important;
+  box-shadow: 0 0 6px #00d4ff;
+}
+
+/* Dropdown options */
+form select option {
+  background: #0d1b2a;  /* dark background for dropdown menu */
+  color: #fff;          /* white option text */
+}
+
+/*-----------------------------------------*/
+
+/* Frosted box for test page content */
+.test-box {
+  background: rgba(0, 0, 0, 0.55); /* same frosted look as forms/cards */
+  backdrop-filter: blur(8px);
+  border-radius: 12px;
+  padding: 40px;
+  margin: 100px auto;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* Headings inside */
+.test-box h1 {
+  color: #00d4ff; /* cyan highlight */
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.test-box h2 a {
+  color: #fff;          /* white readable link */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.test-box h2 a:hover {
+  color: #0dcaf0;       /* cyan hover */
+  text-decoration: underline;
+}
+
