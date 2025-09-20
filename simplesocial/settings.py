@@ -130,5 +130,5 @@ LOGIN_REDIRECT_URL = "test"
 LOGOUT_REDIRECT_URL = "thanks"
 
 #for the hosting live
-STATIC_ROOT = BASE_DIR / 'staticfiles' # This is where 'collectstatic' will put your files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # This is where 'collectstatic' will put your files
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
